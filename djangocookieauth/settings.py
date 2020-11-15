@@ -122,10 +122,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 # In order to send cross-site cookies you need to set SameSite to None and Secure to True.
 # NOTE: Secure cookies can only be sent over HTTPS.
-SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SAMESITE = None
+CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 
