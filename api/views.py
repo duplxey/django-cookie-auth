@@ -9,7 +9,7 @@ from django.views.decorators.http import require_POST
 
 @ensure_csrf_cookie
 def ensure_csrf(request):
-    return JsonResponse({"details": "CSRF cookie set."})
+    return JsonResponse({"detail": "CSRF cookie set."})
 
 
 @require_POST
@@ -19,7 +19,7 @@ def login_view(request):
     password = data.get('password')
 
     if username is None or password is None:
-        return JsonResponse({"details": "Please provide both username & password."}, status=400)
+        return JsonResponse({"detail": "Please provide both username & password."}, status=400)
 
     user = authenticate(username=username, password=password)
 
@@ -27,7 +27,7 @@ def login_view(request):
         return JsonResponse({"detail": "Invalid credentials."}, status=400)
 
     login(request, user)
-    return JsonResponse({"detail": "Successfully logged in as: " + user.username + "."})
+    return JsonResponse({"detail": "Successfully logged in."})
 
 
 @require_POST
@@ -38,7 +38,7 @@ def signup_view(request):
     password1 = data.get('password1')
 
     if username is None or password is None or password1 is None:
-        return JsonResponse({"details": "Please provide both username, password & password1."}, status=400)
+        return JsonResponse({"detail": "Please provide both username, password & password1."}, status=400)
 
     if User.objects.filter(username=username).exists():
         return JsonResponse({"detail": "User with this username already exists."}, status=400)
@@ -47,7 +47,7 @@ def signup_view(request):
     user.save()
 
     login(request, user)
-    return JsonResponse({"details": "You've successfully created an account and logged in."})
+    return JsonResponse({"detail": "You've successfully created an account and logged in."})
 
 
 @require_POST
@@ -59,9 +59,9 @@ def logout_view(request):
     return JsonResponse({"detail": "Successfully logged out."})
 
 
-def protected_view(request):
+def info_view(request):
     if not request.user.is_authenticated:
-        return JsonResponse({"detail": "You are not logged in."}, status=400)
+        return JsonResponse({"loggedIn": False})
 
-    return JsonResponse({"detail": "Super secret information. Your username is: " + request.user.username + "."})
+    return JsonResponse({"loggedIn": True, "username": request.user.username})
 
