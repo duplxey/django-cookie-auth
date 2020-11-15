@@ -63,5 +63,5 @@ def protected_view(request):
     if not request.user.is_authenticated:
         return JsonResponse({"detail": "You are not logged in."}, status=400)
 
-    return JsonResponse({"detail": "Super secret information. Your username is: " + request.user.username})
+    return JsonResponse({"detail": "Super secret information. Your username is: " + request.user.username + "."})
 

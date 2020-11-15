@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'corsheaders',
-    "sslserver",
 ]
 
 MIDDLEWARE = [
@@ -107,7 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # CORS settings
 
-# You should add your frontend address here
+# If you do not serve frontend with backend (Django) you need to make the following changes:
+# Add your frontend address here, to avoid CORS problems.
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000"
@@ -120,8 +120,8 @@ CSRF_TRUSTED_ORIGINS = [
 # If True, cookies will be allowed to be included in cross-site HTTP requests.
 CORS_ALLOW_CREDENTIALS = True
 
-# If you do not serve frontend with Django (your backend), you need to set SameSite to None
-# and Secure to True in order to send cross-origin cookies.
+# In order to send cross-site cookies you need to set SameSite to None and Secure to True.
+# NOTE: Secure cookies can only be sent over HTTPS.
 SESSION_COOKIE_SAMESITE = None
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = None
