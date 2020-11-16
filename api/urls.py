@@ -7,4 +7,6 @@ urlpatterns = [
     path('signup/', views.signup_view, name='api-signup'),
     path('logout/', views.logout_view, name='api-logout'),
     path('info/', views.info_view, name='api-info'),
+
+    path('cors/', views.cors_view, name='api-cors'),
 ]

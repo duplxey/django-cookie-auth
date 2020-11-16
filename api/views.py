@@ -6,10 +6,19 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_POST
 
+from djangocookieauth import settings
+
 
 @ensure_csrf_cookie
 def ensure_csrf(request):
     return JsonResponse({"detail": "CSRF cookie set."})
+
+
+def cors_view(request):
+    return JsonResponse({
+        "CORS_ALLOWED_ORIGINS ": settings.CORS_ALLOWED_ORIGINS,
+        "CSRF_TRUSTED_ORIGINS  ": settings.CSRF_TRUSTED_ORIGINS,
+    })
 
 
 @require_POST
