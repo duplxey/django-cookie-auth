@@ -114,11 +114,13 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://dazzling-ptolemy-ab8ab5.netlify.app",
+    ".netlify.app",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://dazzling-ptolemy-ab8ab5.netlify.app",
+    ".netlify.app",
 ]
 
 # If True, cookies will be allowed to be included in cross-site HTTP requests.
